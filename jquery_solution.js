@@ -43,12 +43,6 @@ function restart() {
     user_click_counter = 0;
     $(document).bind("keypress", startGame);
 }
-
-function playColorSound(color) {
-    var audio_src = "sounds/" + color + ".mp3";
-    var audio = new Audio(audio_src);
-    audio.play();
-}
 //------------------------------------------------------------------------------------------------------
 
 //---------------------------------------- Generate Color Section ---------------------------------------- 
@@ -71,6 +65,13 @@ function getNewColor() {
         color = "blue";
     }
     return color;
+}
+
+function playColorSound(color) {
+    //Link Each Color to Its Audio and Play It
+    var audio_src = "sounds/" + color + ".mp3";
+    var audio = new Audio(audio_src);
+    audio.play();
 }
 //--------------------------------------------------------------------------------------------------------
 
