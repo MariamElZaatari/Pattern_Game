@@ -75,6 +75,30 @@ function playColorSound(color) {
 //--------------------------------------------------------------------------------------------------------
 
 //---------------------------------------- Level Up Section ---------------------------------------- 
+function fadeOut(object) {
+    //Change Opacity of Object to 0.2 Inside SetInterval Function
+    var fadeOutEffect = setInterval(function () {
+        if (object.style.opacity > 0.2) {
+            object.style.opacity -= 0.1;
+        } else {
+            clearInterval(fadeOutEffect);
+        }
+    }, 10);
+}
+
+function fadeIn(object) {
+    //Change Opacity of Object to 1 Inside SetInterval Function
+    var opacity = 0.2;
+    var fadeInEffect = setInterval(function () {
+        if (opacity >= 1){
+            clearInterval(fadeInEffect);
+        }
+        object.style.opacity = opacity;
+        object.style.filter = 'alpha(opacity=' + opacity * 100 + ")";
+        opacity += opacity * 0.1;
+    }, 10);
+}
+
 function increaseLevel() {
     //Update Values and Generate New Color
     user_click_counter = 0;
@@ -82,11 +106,11 @@ function increaseLevel() {
     var generated_color = getNewColor();
     color_pattern.push(generated_color);
 
-    //Play Sound of Generated Color and Fade it in and out with a 0.2 opacity
+    //Play Sound of Generated Color and Fade it in and out
     playColorSound(generated_color);
-    document.getElementById(generated_color);
-    $("#" + generated_color).fadeTo(50, 0.2);
-    $("#" + generated_color).delay(50).fadeTo(50, 1);
+    var button=document.getElementById(generated_color);
+    fadeOut(button,10);
+    fadeIn(button,10);
 
     //Update Title
     document.getElementById("title").innerText="Level " + level;
