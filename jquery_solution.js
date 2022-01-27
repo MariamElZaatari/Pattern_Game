@@ -11,6 +11,15 @@ function startGame(){
     increaseLevel();
     $(document).unbind("keypress");
 }
+function loseGame(){
+    $("#title").text("Game Over, Press Any Key to Restart");
+    $("body").css("background-color", "red");
+    setTimeout(function () {
+        $("body").css("background-color", "#68074f");
+    }, 100)
+    var audio = new Audio("sounds/wrong.mp3");
+    audio.play();
+}
 function restart() {
     game_start = false;
     color_pattern = [];
@@ -51,38 +60,27 @@ function increaseLevel() {
     $("#" + generated_color).delay(50).fadeTo(50, 1);
 
     $("#title").text("Level " + level);
-    console.log(color_pattern);
-    console.log(level);
 }
 $(".btn").click(function () {
-    user_click_counter += 1;
-    var pressed_color = $(this).attr("id");
-
-    $("#" + pressed_color).addClass("pressed");
-    setTimeout(function () {
-        $("#" + pressed_color).removeClass("pressed");
-    }, 100);
-
-    if (pressed_color == color_pattern[user_click_counter - 1]) {
-        playColorSound(pressed_color);
-        if (user_click_counter == level) {
-            setTimeout(function () {
-                increaseLevel();
-            }, 500);
+    if (game_start){
+        user_click_counter += 1;
+        var pressed_color = $(this).attr("id");
+    
+        $("#" + pressed_color).addClass("pressed");
+        setTimeout(function () {
+            $("#" + pressed_color).removeClass("pressed");
+        }, 100);
+    
+        if (pressed_color == color_pattern[user_click_counter - 1]) {
+            playColorSound(pressed_color);
+            if (user_click_counter == level) {
+                setTimeout(function () {
+                    increaseLevel();
+                }, 500);
+            }
+        } else {
+            loseGame();
+            restart();
         }
-    } else {
-        loseGame();
-        restart();
     }
 })
-function loseGame(){
-    $("#title").text("Game Over, Press Any Key to Restart");
-    $("body").css("background-color", "red");
-    setTimeout(function () {
-        $("body").css("background-color", "#68074f");
-    }, 100)
-    var audio = new Audio("sounds/wrong.mp3");
-    audio.play();
-}
-
-
