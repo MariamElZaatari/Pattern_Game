@@ -71,15 +71,18 @@ $(".btn").click(function () {
             }, 500);
         }
     } else {
-        $("#title").text("Game Over, Press Any Key to Restart");
-        $("body").css("background-color", "red");
-        setTimeout(function () {
-            $("body").css("background-color", "#68074f");
-        }, 100)
-        var audio = new Audio("sounds/wrong.mp3");
-        audio.play();
+        loseGame();
         restart();
     }
 })
+function loseGame(){
+    $("#title").text("Game Over, Press Any Key to Restart");
+    $("body").css("background-color", "red");
+    setTimeout(function () {
+        $("body").css("background-color", "#68074f");
+    }, 100)
+    var audio = new Audio("sounds/wrong.mp3");
+    audio.play();
+}
 
 
