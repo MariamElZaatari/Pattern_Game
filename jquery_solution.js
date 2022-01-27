@@ -1,16 +1,23 @@
 game_start = false;
 var color_pattern = [];
-var generated_color = "";
-var pressed_color = "";
 var level = 0;
 var user_click_counter = 0;
 
-$(document).keypress(function (event) {
+$(document).keypress(function(){
+    startGame()
+})
+function startGame(){
     game_start = true;
     increaseLevel();
     $(document).unbind("keypress");
-})
-
+}
+function restart() {
+    game_start = false;
+    color_pattern = [];
+    level = 0;
+    user_click_counter = 0;
+    $(document).bind("keypress", startGame);
+}
 function playColorSound(color) {
     var audio_src = "sounds/" + color + ".mp3";
     var audio = new Audio(audio_src);
@@ -34,38 +41,44 @@ function getNewColor() {
     return color;
 }
 function increaseLevel() {
-    user_click_counter=0;
+    user_click_counter = 0;
     level += 1;
-    generated_color = getNewColor();
+    var generated_color = getNewColor();
     color_pattern.push(generated_color);
 
     playColorSound(generated_color);
     $("#" + generated_color).fadeTo(50, 0.2);
     $("#" + generated_color).delay(50).fadeTo(50, 1);
 
-    $("#title").text("Level "+level);
+    $("#title").text("Level " + level);
     console.log(color_pattern);
     console.log(level);
 }
 $(".btn").click(function () {
     user_click_counter += 1;
-    pressed_color = $(this).attr("id");
+    var pressed_color = $(this).attr("id");
 
     $("#" + pressed_color).addClass("pressed");
     setTimeout(function () {
         $("#" + pressed_color).removeClass("pressed");
     }, 100);
-    playColorSound(pressed_color);
 
     if (pressed_color == color_pattern[user_click_counter - 1]) {
+        playColorSound(pressed_color);
         if (user_click_counter == level) {
-            setTimeout(function(){
+            setTimeout(function () {
                 increaseLevel();
-            },1000);
+            }, 500);
         }
     } else {
         $("#title").text("Game Over, Press Any Key to Restart");
-        console.log("lose")
+        $("body").css("background-color", "red");
+        setTimeout(function () {
+            $("body").css("background-color", "#68074f");
+        }, 100)
+        var audio = new Audio("sounds/wrong.mp3");
+        audio.play();
+        restart();
     }
 })
 
