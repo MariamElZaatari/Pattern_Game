@@ -1,4 +1,4 @@
-game_start = false;
+var game_start = false;
 var color_pattern = [];
 var level = 0;
 var user_click_counter = 0;
