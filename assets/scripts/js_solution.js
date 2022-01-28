@@ -28,7 +28,7 @@ function loseGame(){
     }, 100)
     
     //Play Audio
-    var audio = new Audio("sounds/wrong.mp3");
+    var audio = new Audio("assets/sounds/wrong.mp3");
     audio.play();
 }
 //---------------------------------------------------------------------------------------------------
@@ -68,7 +68,7 @@ function getNewColor() {
 
 function playColorSound(color) {
     //Link Each Color to Its Audio and Play It
-    var audio_src = "sounds/" + color + ".mp3";
+    var audio_src = "assets/sounds/" + color + ".mp3";
     var audio = new Audio(audio_src);
     audio.play();
 }
