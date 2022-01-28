@@ -15,7 +15,7 @@ Pattern Game is an infinite game that tests the player's memory by memorizing a 
 
 ## Screenshots
 
-![Start.png](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![assets/screenshots/Start.PNG](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 ## 
 ![assets/screenshots/Play.png](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 ## 
