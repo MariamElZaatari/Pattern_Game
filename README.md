@@ -15,10 +15,13 @@ Pattern Game is an infinite game that tests the player's memory by memorizing a 
 
 ## Screenshots
 
+### Start Screen
 ![Start Screen](/assets/screenshots/Start.png?raw=true "Start Screen")
-## 
+##
+### Play Screen
 ![Play Screen](/assets/screenshots/Play.png?raw=true "Play Screen")
 ## 
+### Lose Screen
 ![Lose Screen](/assets/screenshots/Lose.png?raw=true "Lose Screen")
 
 ## Demo
